@@ -6,7 +6,9 @@
 class AnalogSensor: public Sensor
 {
   public:
-    AnalogSensor(byte InPin, byte activatedLevel);
+    AnalogSensor(byte InPin, int activatedLevel);
+    AnalogSensor(byte InPin);
+    void SetLevel(int NewLevel);
     int Get();
     bool Activated();
   private:

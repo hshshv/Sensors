@@ -2,11 +2,11 @@
 
 DigitalSensor::DigitalSensor(byte inPin)
 {
-    InPin = inPin;
-    pinMode(InPin, INPUT);
+  InPin = inPin;
+  pinMode(InPin, INPUT);
 }
 
 bool DigitalSensor::Activated()
 {
-  return(digitalRead(InPin));
+  return (digitalRead(InPin));
 }

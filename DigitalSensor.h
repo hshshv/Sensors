@@ -10,4 +10,4 @@ class DigitalSensor: public Sensor
     bool Activated();
 };
 
-#endif;
+#endif
