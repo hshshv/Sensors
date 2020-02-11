@@ -12,7 +12,7 @@ class AnalogSensor: public Sensor
     int Get();
     bool Activated();
   private:
-    byte ActivatedLevel;
+    int ActivatedLevel;
 };
 
 #endif
