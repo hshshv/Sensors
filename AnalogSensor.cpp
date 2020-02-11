@@ -4,7 +4,6 @@ AnalogSensor::AnalogSensor(byte inPin, int activatedLevel)
 {
   InPin = inPin;
   ActivatedLevel = activatedLevel;
-  pinMode(InPin, INPUT);
 }
 
 AnalogSensor::AnalogSensor(byte inPin)
