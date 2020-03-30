@@ -28,7 +28,7 @@ bool UltrasonicSensor::Blocked(byte times)
   {
     StoppingDistance = 10;
   }
-  return (GetAvg(times) > StoppingDistance);
+  return (GetAvg(times) < StoppingDistance);
 }
 
 float UltrasonicSensor::Get()
