@@ -1,18 +1,14 @@
 #ifndef AnalogSensor_h
 #define AnalogSensor_h
 
-#include "Sensor.h"
+#include "Analog.h"
+#include "Arduino.h"
 
-class AnalogSensor: public Sensor
+class AnalogSensor: public Analog
 {
   public:
     AnalogSensor(byte InPin, int activatedLevel);
     AnalogSensor(byte InPin);
-    void SetLevel(int NewLevel);
-    int Get();
-    bool Activated();
-  private:
-    int ActivatedLevel;
 };
 
 #endif
