@@ -1,10 +1,10 @@
 #ifndef UltrasonicSensor_h
 #define UltrasonicSensor_h
 
-#include "Sensor.h"
+#include "Analog.h"
 #include "Arduino.h"
 
-class UltrasonicSensor : public Sensor
+class UltrasonicSensor : public Analog
 {
   private:
     int TrigPin;
@@ -13,12 +13,8 @@ class UltrasonicSensor : public Sensor
     UltrasonicSensor(int Trig, int Echo);
     UltrasonicSensor();
     void SetPins(int Trig, int Echo);
-    int StoppingDistance = 10;
     float Get();
-    float GetAvg();
-    float GetAvg(int times);
     bool Blocked();
-    bool Blocked(byte times);
-    bool Activated();
+    bool Blocked(int times);
 };
 #endif
