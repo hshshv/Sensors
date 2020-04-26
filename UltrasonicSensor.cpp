@@ -22,25 +22,13 @@ bool UltrasonicSensor::Blocked()
 {
   return (Blocked(1));
 }
-
-bool UltrasonicSensor::Blocked(int times)
+bool UltrasonicSensor::Blocked(byte times)
 {
-  if (ActivatedLevel > 150 || ActivatedLevel < 3)
+  if (StoppingDistance > 150 || StoppingDistance < 3)
   {
-    ActivatedLevel = 10;
+    StoppingDistance = 10;
   }
-  return (Get(times) < ActivatedLevel);
-}
-
-float UltrasonicSensor::Get(int checksForAvg)
-{
-  int sum = 0;
-  for(int i = 0; i < checksForAvg; ++i)
-  {
-    sum += Get();
-    delay(10);
-  }
-  return(sum / checksForAvg);
+  return (GetAvg(times) > StoppingDistance);
 }
 
 float UltrasonicSensor::Get()
@@ -49,4 +37,36 @@ float UltrasonicSensor::Get()
   delayMicroseconds(10);
   digitalWrite(TrigPin, LOW);
   return (pulseIn(EchoPin, HIGH) / 58.77);
+}
+
+float UltrasonicSensor::GetAvg()
+{
+  return (GetAvg(5));
+}
+
+float UltrasonicSensor::GetAvg(int times)
+{
+  float sum = 0;
+  for (int i = 0; i < times; ++i)
+  {
+    sum = sum + Get();
+    delay(1);
+  }
+  return (sum / times);
+}
+
+bool UltrasonicSensor::Activated()
+{
+  return (Blocked());
+}
+
+float UltrasonicSensor::CheckSpeed()
+{
+  float before = Get();
+  delay(500);
+  float sum = before - Get();
+  float mshoo = sum / 5; //התקדמות בעשירית השנייה, בסנטימטרים
+  mshoo = mshoo * 36000; //התקדמות בסנטימטרים לשעה
+  mshoo = mshoo / 100000; //התקדמות בק"מ לשעה
+  return(mshoo);
 }
