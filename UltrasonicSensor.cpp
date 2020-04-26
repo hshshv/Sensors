@@ -5,9 +5,9 @@ UltrasonicSensor::UltrasonicSensor (int Trig, int Echo)
   SetPins(Trig, Echo);
 }
 
-UltrasonicSensor::UltrasonicSensor()
+UltrasonicSensor::UltrasonicSensor():UltrasonicSensor(4, 5)
 {
-  UltrasonicSensor(4, 5);
+  
 }
 
 void UltrasonicSensor::SetPins(int Trig, int Echo)
@@ -22,13 +22,25 @@ bool UltrasonicSensor::Blocked()
 {
   return (Blocked(1));
 }
-bool UltrasonicSensor::Blocked(byte times)
+
+bool UltrasonicSensor::Blocked(int times)
 {
-  if (StoppingDistance > 150 || StoppingDistance < 3)
+  if (ActivatedLevel > 150 || ActivatedLevel < 3)
   {
-    StoppingDistance = 10;
+    ActivatedLevel = 10;
   }
-  return (GetAvg(times) < StoppingDistance);
+  return (Get(times) < ActivatedLevel);
+}
+
+float UltrasonicSensor::Get(int checksForAvg)
+{
+  int sum = 0;
+  for(int i = 0; i < checksForAvg; ++i)
+  {
+    sum += Get();
+    delay(10);
+  }
+  return(sum / checksForAvg);
 }
 
 float UltrasonicSensor::Get()
@@ -37,25 +49,4 @@ float UltrasonicSensor::Get()
   delayMicroseconds(10);
   digitalWrite(TrigPin, LOW);
   return (pulseIn(EchoPin, HIGH) / 58.77);
-}
-
-float UltrasonicSensor::GetAvg()
-{
-  return (GetAvg(5));
-}
-
-float UltrasonicSensor::GetAvg(int times)
-{
-  float sum = 0;
-  for (int i = 0; i < times; ++i)
-  {
-    sum = sum + Get();
-    delay(1);
-  }
-  return (sum / times);
-}
-
-bool UltrasonicSensor::Activated()
-{
-  return (Blocked());
 }

@@ -5,9 +5,9 @@ Led:: Led (int pin)
   SetPin(pin);
 }
 
-Led:: Led ()
+Led:: Led (): Led(13)
 {
-  Led(13);
+
 }
 
 void Led::SetPin(int pin)
