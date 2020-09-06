@@ -1,10 +1,5 @@
 #include "Analog.h"
 
-void Analog::SetLevel(int NewLevel)
-{
-  ActivatedLevel = NewLevel;
-}
-    
 float Analog::Get()
 {
   return (analogRead(InPin));
@@ -26,12 +21,17 @@ float Analog::Get(int times)
   return (sum / times);
 }
 
+float Analog::GetPercentage()
+{
+  return(map(GetAvg(), 0, 1023, 0, 100)); 
+}
+
 bool Analog::Activated()
 {
-  return (Get() >= ActivatedLevel);
+  return (Get() >= Minimum && Get() <= Maximum);
 }
 
 bool Analog::Activated(int times)
 {
-  return(Get(times) >= ActivatedLevel);
+  return(Get(times) >= Minimum && <= Maximum);
 }
