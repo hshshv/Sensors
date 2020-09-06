@@ -11,9 +11,11 @@ class Analog: public Sensor
     float Get();
     float Get(int times);
     float GetAvg();
+    float GetPercentage();
     bool Activated();
     bool Activated(int times);
-    int ActivatedLevel;
+    int Minimum;
+    int Maximum;
 };
 
 #endif
