@@ -3,7 +3,7 @@
 AnalogSensor::AnalogSensor(byte inPin, int activatedLevel)
 {
   InPin = inPin;
-  ActivatedLevel = activatedLevel;
+  Minimum = activatedLevel;
 }
 
 AnalogSensor::AnalogSensor(byte inPin):AnalogSensor(inPin, 512)

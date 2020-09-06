@@ -33,5 +33,5 @@ bool Analog::Activated()
 
 bool Analog::Activated(int times)
 {
-  return(Get(times) >= Minimum && <= Maximum);
+  return(Get(times) >= Minimum && Get(times) <= Maximum);
 }
