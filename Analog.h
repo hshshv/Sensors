@@ -7,7 +7,6 @@
 class Analog: public Sensor
 {
   public:
-    void SetLevel(int NewLevel);
     float Get();
     float Get(int times);
     float GetAvg();
