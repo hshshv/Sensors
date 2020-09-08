@@ -16,6 +16,7 @@ class Led
     void TurnOn();
     void TurnOn(int clarity);
     void Blip(int Time);
+    void FullBlip(int Time);
     void TurnOff();
     void Change();
     int Clarity();
