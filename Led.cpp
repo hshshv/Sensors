@@ -75,6 +75,6 @@ void Led::Blip(int Time)
 
 void Led::FullBlip(int Time)
 {
- Blip(round(time / 2));
- delay(time / 2);
+ Blip(round(Time / 2));
+ delay(Time / 2);
 }
