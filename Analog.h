@@ -13,8 +13,12 @@ class Analog: public Sensor
     float GetPercentage();
     bool Activated();
     bool Activated(int times);
+    void MapResult(int newRangeStart, int newRangeEnd);
     int Minimum;
     int Maximum;
+  private:
+    int rangeStart = 0;
+    int rangeEnd = 1023;
 };
 
 #endif

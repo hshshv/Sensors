@@ -2,7 +2,7 @@
 
 float Analog::Get()
 {
-  return (analogRead(InPin));
+  return (map(analogRead(InPin), 0, 1023, rangeStart, rangeEnd));
 }
 
 float Analog::GetAvg()
@@ -34,4 +34,10 @@ bool Analog::Activated()
 bool Analog::Activated(int times)
 {
   return(Get(times) >= Minimum && Get(times) <= Maximum);
+}
+
+void Analog::MapResult(int newRangeStart, int newRangeEnd)
+{
+  rangeStart = newRangeStart;
+  rangeEnd = newRangeEnd;
 }
